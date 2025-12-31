@@ -51,7 +51,7 @@ const MapComponent = ({ textMode, editDetails, features, setFeatures, setSelecti
         let popupContent = '';                                  // extract lines
         let lastLine = text.split('\n').pop();                  // add line breaks if not the last line
         for (let line of text.split('\n')) {
-            popupContent += ${line} + (line !== lastLine ? '<br>' : '');
+            popupContent += `${line}` + (line !== lastLine ? '<br>' : '');
         }
         return popupContent;
     }
@@ -173,7 +173,7 @@ const MapComponent = ({ textMode, editDetails, features, setFeatures, setSelecti
         
         // Bind a tooltip to show the segment ID on hover
         if (feature.properties && feature.properties.segment_id) {
-            layer.bindTooltip(Segment ID: ${feature.properties.segment_id}, {
+            layer.bindTooltip(`Segment ID: ${feature.properties.segment_id}`, {
                 permanent: false,
                 direction: "auto",
                 sticky: true

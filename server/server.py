@@ -3,6 +3,7 @@ from flask_cors import CORS
 import logging
 import os
 import sys
+import traceback
 import geopandas as gpd
 from pyproj import Transformer
 from shapely.ops import transform
@@ -82,6 +83,8 @@ def minmax():
             }), 500
             
     except Exception as e:
+        print(f"Error in /minmax endpoint: {str(e)}")
+        traceback.print_exc()
         return jsonify({
             'status': 'error',
             'message': str(e)

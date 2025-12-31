@@ -102,10 +102,11 @@ def download_satellite_imagery(qgs_app, image_path, output_path, resolution=4096
                 dst_band = dataset.GetRasterBand(band)
                 dst_band.WriteArray(src_band.ReadAsArray())
 
-        # Clean up
+        # Clean up (keep temp PNG for segmentation script)
         dataset = None
         temp_ds = None
-        os.remove(temp_path)
+        # Note: Don't delete temp_path - segmentation script needs it
+        # os.remove(temp_path)
         QgsProject.instance().removeAllMapLayers()
 
         print(f"High-resolution GeoTIFF saved successfully: {output_path}")
